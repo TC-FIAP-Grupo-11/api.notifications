@@ -13,9 +13,9 @@ builder.Services.AddScoped<IEmailService, ConsoleEmailService>();
 // Configurar messaging consumers
 builder.Services.AddMessagingConsumers(builder.Configuration, consumers =>
 {
-    consumers.AddConsumer<UserCreatedEventConsumer>();
     consumers.AddConsumer<PaymentProcessedEventConsumer>();
-});
+    consumers.AddConsumer<UserCreatedEventConsumer>();
+}, "notifications");
 
 var app = builder.Build();
 
