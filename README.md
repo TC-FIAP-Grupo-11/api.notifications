@@ -1,6 +1,10 @@
 # FCG.Api.Notifications
 
+**Tech Challenge - Fase 2**  
 API simples para logging de notificações por email no console.
+
+> **⚠️ Este microsserviço faz parte de um sistema maior.**  
+> Para executar toda a plataforma (Docker Compose ou Kubernetes), veja: [FCG.Infra.Orchestration](../FCG.Infra.Orchestration/README.md)
 
 ## Propósito
 
@@ -10,33 +14,27 @@ Esta API simula o envio de emails de:
 
 Os emails **NÃO são enviados de verdade**. Apenas logados no console para fins de demonstração.
 
-## Como executar
+## Variáveis de Ambiente
 
+```bash
+# RabbitMQ
+Messaging__RabbitMQ__Host="localhost"
+Messaging__RabbitMQ__Username="guest"
+Messaging__RabbitMQ__Password="guest"
+```
+
+## Como Executar
+
+### Localmente
 ```bash
 cd src/FCG.Api.Notifications
 dotnet run
 ```
 
-Acesse: http://localhost:5000/swagger
+Acesse: http://localhost:5004/health
 
-## Endpoint
-
-**POST /api/notifications/send**
-
-```json
-{
-  "email": "user@example.com",
-  "subject": "Bem-vindo!",
-  "body": "Obrigado por se cadastrar.",
-  "type": "Welcome"
-}
-```
-
-Os tipos disponíveis: `Welcome`, `PurchaseConfirmation`
-
-## Docker
-
+### Docker
 ```bash
 docker build -t fcg-notifications .
-docker run -p 5000:80 fcg-notifications
+docker run -p 5004:80 fcg-notifications
 ```

@@ -30,4 +30,6 @@ app.UseHttpsRedirection();
 
 app.MapControllers();
 
+app.MapGet("/health", () => Results.Ok(new { status = "healthy", service = "notifications-api" }));
+
 app.Run();
