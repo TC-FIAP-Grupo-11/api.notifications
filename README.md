@@ -7,7 +7,7 @@ API de notificações — **deprecada em favor da `FCG.Lambda.Notification`**.
 > Para executar toda a plataforma (Docker Compose ou Kubernetes), veja: [FCG.Infra.Orchestration](../FCG.Infra.Orchestration/README.md)
 
 ## Propósito
-
+ 
 Esta API simula o envio de emails de:
 - Boas-vindas (Welcome)
 - Confirmação de compra (PurchaseConfirmation)
