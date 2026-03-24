@@ -1,6 +1,4 @@
-using FCG.Api.Notifications.Services;
-using FCG.Api.Notifications.Consumers;
-using FCG.Lib.Shared.Messaging.Configuration;
+using Amazon.XRay.Recorder.Handlers.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,16 +6,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IEmailService, ConsoleEmailService>();
-
-// Configurar messaging consumers
-builder.Services.AddMessagingConsumers(builder.Configuration, consumers =>
-{
-    consumers.AddConsumer<PaymentProcessedEventConsumer>();
-    consumers.AddConsumer<UserCreatedEventConsumer>();
-}, "notifications");
-
 var app = builder.Build();
+
+app.UseXRay("fcg-notifications-api");
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
@@ -30,6 +21,12 @@ app.UseHttpsRedirection();
 
 app.MapControllers();
 
-app.MapGet("/health", () => Results.Ok(new { status = "healthy", service = "notifications-api" }));
+app.MapGet("/health", () => Results.Ok(new
+{
+    status = "healthy",
+    service = "notifications-api",
+    deprecated = true,
+    message = "Este serviço foi depreciado na Fase 3. O envio de notificações foi migrado para FCG.Lambda.Notification (AWS Lambda + SQS)."
+}));
 
 app.Run();

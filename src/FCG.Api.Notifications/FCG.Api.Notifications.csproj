@@ -7,11 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSXRayRecorder.Handlers.AspNetCore" Version="2.13.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FCG.Lib.Shared" Version="1.0.9" />
+    <PackageReference Include="FCG.Lib.Shared" Version="1.0.10" />
   </ItemGroup>
 
 </Project>
