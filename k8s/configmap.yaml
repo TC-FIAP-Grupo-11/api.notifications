@@ -6,8 +6,8 @@ metadata:
 data:
   ASPNETCORE_ENVIRONMENT: "Production"
   ASPNETCORE_URLS: "http://+:80"
-  Messaging__RabbitMQ__Host: "rabbitmq-service"
-  Messaging__RabbitMQ__Username: "guest"
-  Messaging__RabbitMQ__Password: "guest"
+  RABBITMQ_HOST: "rabbitmq-service"
+  RABBITMQ_USERNAME: "guest"
+  RABBITMQ_PASSWORD: "guest"
   SWAGGER_BASE_PATH: "/notifications"
   NEW_RELIC_APP_NAME: "fcg-notifications-api"
