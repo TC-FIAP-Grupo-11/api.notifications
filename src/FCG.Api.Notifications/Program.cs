@@ -4,7 +4,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    var basePath = builder.Configuration["SWAGGER_BASE_PATH"];
+    if (!string.IsNullOrEmpty(basePath))
+        c.AddServer(new Microsoft.OpenApi.Models.OpenApiServer { Url = basePath });
+});
 
 var app = builder.Build();
 
