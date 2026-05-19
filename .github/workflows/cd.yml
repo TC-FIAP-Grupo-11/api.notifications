@@ -41,7 +41,8 @@ jobs:
 
       - name: Deploy to EKS
         env:
-          IMAGE: ${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPO }}:latest
+          IMAGE: ${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPO }}:${{ github.sha }}
         run: |
           aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER }} --region ${{ env.AWS_REGION }}
           kubectl set image deployment/${{ env.DEPLOYMENT }} ${{ env.CONTAINER }}=$IMAGE
+          kubectl rollout status deployment/${{ env.DEPLOYMENT }} --timeout=300s
