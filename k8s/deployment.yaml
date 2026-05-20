@@ -45,8 +45,8 @@ spec:
               key: RABBITMQ_USERNAME
         - name: Messaging__RabbitMQ__Password
           valueFrom:
-            configMapKeyRef:
-              name: notifications-api-config
+            secretKeyRef:
+              name: notifications-api-secret
               key: RABBITMQ_PASSWORD
         - name: SWAGGER_BASE_PATH
           valueFrom:
